@@ -1,0 +1,3 @@
+<% content_for :title, "#{@lead.company_name} · Leadwise" %>
+
+<%= render "lead_dialog", lead: @lead, open: true, hide_trigger: true, close_url: leads_path %>

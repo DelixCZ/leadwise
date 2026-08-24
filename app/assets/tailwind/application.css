@@ -1,0 +1,23 @@
+@import "tailwindcss";
+
+dialog.lead-modal {
+  width: min(calc(100% - 2rem), 42rem);
+  max-width: min(calc(100% - 2rem), 42rem);
+  max-height: min(90vh, 52rem);
+  margin: auto;
+  padding: 0;
+  border: 0;
+  border-radius: 0.75rem;
+  background: white;
+  box-shadow: 0 25px 50px -12px rgb(15 23 42 / 0.35);
+  overflow: hidden;
+  white-space: normal;
+}
+
+dialog.lead-modal::backdrop {
+  background: rgb(15 23 42 / 0.55);
+}
+
+dialog.lead-modal:not([open]) {
+  display: none;
+}

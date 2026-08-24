@@ -1,0 +1,20 @@
+<%= button_to re_score_lead_path(lead),
+      method: :post,
+      form: {
+        class: "inline-flex",
+        data: {
+          controller: "loading-form",
+          action: "submit->loading-form#start turbo:submit-start->loading-form#start turbo:submit-end->loading-form#stop",
+          loading_form_busy_label_value: "Scoring…"
+        }
+      },
+      class: local_assigns.fetch(:class, "inline-flex items-center gap-1.5 rounded-lg bg-indigo-600 px-4 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 disabled:cursor-wait disabled:opacity-90"),
+      data: { loading_form_target: "submit" } do %>
+  <span data-loading-form-target="spinner" class="hidden">
+    <%= render "loading_spinner" %>
+  </span>
+  <svg data-loading-form-target="idleIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="h-4 w-4">
+    <path fill-rule="evenodd" d="M15.312 11.424a5.5 5.5 0 0 1-9.201 2.466l-.312-.311h2.433a.75.75 0 0 0 0-1.5H4.22a.75.75 0 0 0-.75.75v3.5a.75.75 0 0 0 1.5 0v-1.69l.03.03a7 7 0 0 0 11.157-2.988.75.75 0 0 0-1.449-.394Zm-9.624-2.848a5.5 5.5 0 0 1 9.201-2.466l.312.311H12.77a.75.75 0 0 0 0 1.5h3.812a.75.75 0 0 0 .75-.75V3.67a.75.75 0 0 0-1.5 0v1.69l-.03-.03A7 7 0 0 0 4.645 8.32a.75.75 0 0 0 1.45.394Z" clip-rule="evenodd" />
+  </svg>
+  <span data-loading-form-target="label"><%= local_assigns.fetch(:label, "Re-evaluate with AI") %></span>
+<% end %>

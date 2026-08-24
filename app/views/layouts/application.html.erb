@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html class="h-full">
+  <head>
+    <title><%= content_for(:title) || "Leadwise" %></title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="Leadwise">
+    <meta name="mobile-web-app-capable" content="yes">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= yield :head %>
+
+    <link rel="icon" href="/icon.png" type="image/png">
+    <link rel="icon" href="/icon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/icon.png">
+
+    <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+  </head>
+
+  <body class="min-h-full bg-slate-50 text-slate-900 antialiased">
+    <header class="sticky top-0 z-20 border-b border-slate-800/80 bg-slate-900">
+      <nav class="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-3 sm:px-6 lg:px-8">
+        <%= link_to root_path, class: "flex items-center gap-2.5 text-white" do %>
+          <span class="flex h-9 w-9 items-center justify-center rounded-lg bg-indigo-500 shadow-sm">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="h-5 w-5">
+              <path d="M3.375 4.5C2.339 4.5 1.5 5.34 1.5 6.375V13.5h12V6.375c0-1.036-.84-1.875-1.875-1.875H3.375ZM13.5 15h-12v2.625c0 1.035.84 1.875 1.875 1.875h.375a3 3 0 1 1 6 0h3a.75.75 0 0 0 .75-.75V15Z" />
+              <path d="M8.25 19.5a1.5 1.5 0 1 0-3 0 1.5 1.5 0 0 0 3 0ZM15.75 6.75a.75.75 0 0 0-.75.75v11.25c0 .414.336.75.75.75h.75a3 3 0 1 1 6 0h.375c1.035 0 1.875-.84 1.875-1.875V11.25a5.25 5.25 0 0 0-5.25-5.25h-3.75ZM18 19.5a1.5 1.5 0 1 0 3 0 1.5 1.5 0 0 0-3 0Z" />
+            </svg>
+          </span>
+          <span class="flex flex-col leading-tight">
+            <span class="text-sm font-semibold tracking-tight">Leadwise</span>
+            <span class="text-[11px] font-medium uppercase tracking-wider text-slate-400">AI Lead CRM</span>
+          </span>
+        <% end %>
+
+        <div class="flex items-center gap-2 sm:gap-3">
+          <%= link_to "Leads", leads_path, class: "rounded-md px-3 py-2 text-sm font-medium text-slate-200 hover:bg-slate-800 hover:text-white" %>
+          <%= link_to new_lead_path, class: "inline-flex items-center gap-1.5 rounded-md bg-indigo-500 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-400" do %>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="h-4 w-4">
+              <path d="M10.75 4.75a.75.75 0 0 0-1.5 0v4.5h-4.5a.75.75 0 0 0 0 1.5h4.5v4.5a.75.75 0 0 0 1.5 0v-4.5h4.5a.75.75 0 0 0 0-1.5h-4.5v-4.5Z" />
+            </svg>
+            New Lead
+          <% end %>
+        </div>
+      </nav>
+    </header>
+
+    <main class="mx-auto max-w-6xl px-4 py-8 sm:px-6 lg:px-8">
+      <% if notice.present? %>
+        <p class="mb-6 rounded-lg border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm font-medium text-emerald-800" role="status"><%= notice %></p>
+      <% end %>
+      <% if alert.present? %>
+        <p class="mb-6 rounded-lg border border-rose-200 bg-rose-50 px-4 py-3 text-sm font-medium text-rose-800" role="alert"><%= alert %></p>
+      <% end %>
+
+      <%= yield %>
+    </main>
+  </body>
+</html>
